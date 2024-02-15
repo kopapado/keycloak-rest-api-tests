@@ -1,2 +1,11 @@
+server:
+  port: 8082
+
 keycloak:
   url: http://localhost:8180
+
+test:
+  name: user-creation
+  no-requests: 100
+  requests-per-session: 10000
+
