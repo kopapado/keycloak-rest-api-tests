@@ -8,7 +8,7 @@ client:
   url: http://localhost:8080
 
 test:
-  name: user-creation
+  action: user-creation
   no-requests: 100
   requests-per-session: 10000
 

@@ -46,7 +46,7 @@ public class KeycloakRestApiTestService {
     }
 
     private void selectTestToRun(TestConfiguration testConfiguration) {
-        switch (testConfiguration.getName()) {
+        switch (testConfiguration.getAction()) {
             case "user-creation":
                 measure(userTestService::createUsers);
                 break;
@@ -74,11 +74,11 @@ public class KeycloakRestApiTestService {
     }
 
     private void measure(Runnable testRunner) {
-        LOG.info("Test {} started", testConfiguration.getName());
+        LOG.info("Test {} started", testConfiguration.getAction());
         Instant start = Instant.now();
         testRunner.run();
         Instant finish = Instant.now();
-        LOG.info("Test {} finished", testConfiguration.getName());
+        LOG.info("Test {} finished", testConfiguration.getAction());
 
         long timeElapsed = Duration.between(start, finish).toMillis();
         LOG.info("Time elapsed: {} ms", timeElapsed);

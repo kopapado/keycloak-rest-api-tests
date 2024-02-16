@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "test")
 public class TestConfiguration {
-    private String name;
+    private String action;
     private Long noRequests;
     private Long requestsPerSession;
 
-    public String getName() {
-        return name;
+    public String getAction() {
+        return action;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public Long getNoRequests() {
@@ -37,7 +37,7 @@ public class TestConfiguration {
     @Override
     public String toString() {
         return "TestConfiguration{" +
-                "name='" + name + '\'' +
+                "action='" + action + '\'' +
                 ", noRequests=" + noRequests +
                 ", requestsPerSession=" + requestsPerSession +
                 '}';
