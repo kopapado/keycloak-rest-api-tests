@@ -4,6 +4,9 @@ server:
 keycloak:
   url: http://localhost:8180
 
+client:
+  url: http://localhost:8080
+
 test:
   name: user-creation
   no-requests: 100

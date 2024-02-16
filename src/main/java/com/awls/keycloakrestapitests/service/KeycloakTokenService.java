@@ -4,6 +4,7 @@ import com.awls.keycloakrestapitests.config.KeycloakConfiguration;
 import com.awls.keycloakrestapitests.model.TokenDetails;
 import com.awls.keycloakrestapitests.model.UserCredentials;
 import com.awls.keycloakrestapitests.model.UserCredentialsBuilder;
+import com.awls.keycloakrestapitests.utility.UserUtility;
 import io.netty.handler.timeout.WriteTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,37 +57,27 @@ public class KeycloakTokenService {
     }
 
     public TokenDetails getAdminToken() {
-        UserCredentials userCredentials = UserCredentialsBuilder.anUserCredentials()
-                .withRealm("master")
-                .withClientId("admin-cli")
-                .withUsername("admin")
-                .withPassword("admin")
-                .build();
-
+        UserCredentials userCredentials = UserUtility.getAdminCredentials();
         return getToken(userCredentials);
     }
 
     public TokenDetails getSimpleUserToken() {
-        UserCredentials userCredentials = UserCredentialsBuilder.anUserCredentials()
-                .withRealm("quickstart")
-                .withClientId("authz-servlet")
-                .withClientSecret("secret")
-                .withUsername("alice")
-                .withPassword("alice")
-                .build();
-
+        UserCredentials userCredentials = getUserCredentials("alice", "alice");
         return getToken(userCredentials);
     }
 
     public TokenDetails getPremiumUserToken() {
-        UserCredentials userCredentials = UserCredentialsBuilder.anUserCredentials()
+        UserCredentials userCredentials = getUserCredentials("jdoe", "jdoe");
+        return getToken(userCredentials);
+    }
+
+    private UserCredentials getUserCredentials(String username, String password) {
+        return UserCredentialsBuilder.anUserCredentials()
                 .withRealm("quickstart")
                 .withClientId("authz-servlet")
                 .withClientSecret("secret")
-                .withUsername("jdoe")
-                .withPassword("jdoe")
+                .withUsername(username)
+                .withPassword(password)
                 .build();
-
-        return getToken(userCredentials);
     }
 }

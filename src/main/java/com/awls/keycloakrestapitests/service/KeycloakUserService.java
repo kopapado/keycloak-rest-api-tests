@@ -45,7 +45,7 @@ public class KeycloakUserService {
                 .toEntity(Integer.class)
                 .block();
 
-        LOG.info("Status {}. Count: {}", response.getStatusCode(), response.getBody());
+        LOG.info("Status {} - Count: {}", response.getStatusCode(), response.getBody());
         return response.getBody();
     }
 }
